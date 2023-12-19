@@ -1,4 +1,4 @@
-package com.example.verygoodcore.dineros
+package com.ricardo.dineros
 
 import io.flutter.embedding.android.FlutterActivity
 
