@@ -8,6 +8,12 @@ environment:
 
 dependencies:
   bloc: ^8.1.2
+  expenses:
+    path: packages/expenses
+  expenses_hive:
+    path: packages/expenses_hive
+  expenses_repository:
+    path: packages/expenses_repository
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.3
