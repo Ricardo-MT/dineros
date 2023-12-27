@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
 
-class IosAddEditExpenseView extends StatelessWidget {
-  const IosAddEditExpenseView({
+class AndroidAddEditExpenseView extends StatelessWidget {
+  const AndroidAddEditExpenseView({
     this.initialExpense,
     super.key,
   });
@@ -102,18 +102,15 @@ class _NameInput extends StatelessWidget {
     return BlocBuilder<ExpenseAddEditBloc, ExpenseAddEditState>(
       buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
-        return CupertinoTextFormFieldRow(
-          focusNode: state.nameFocusNode,
-          padding: EdgeInsets.zero,
-          decoration: BoxDecoration(
-            color: CupertinoTheme.of(context).barBackgroundColor,
-            borderRadius: BorderRadius.circular(8),
-          ),
-          initialValue: state.name,
+        return TextFormField(
           key: const Key('expenseForm_nameInput_textField'),
+          decoration: InputDecoration(
+            hintText: context.l10n.nameFormFieldLabel,
+          ),
+          focusNode: state.nameFocusNode,
+          initialValue: state.name,
           onChanged: (name) =>
               context.read<ExpenseAddEditBloc>().add(ExpenseNameChanged(name)),
-          placeholder: context.l10n.nameFormFieldLabel,
           onEditingComplete: () {
             state.priceFocusNode.requestFocus();
           },
@@ -137,14 +134,12 @@ class _PriceInput extends StatelessWidget {
         final initialValue = state.price?.truncate() == state.price
             ? state.price?.truncate().toString()
             : state.price.toString();
-        return CupertinoTextFormFieldRow(
-          focusNode: state.priceFocusNode,
+        return TextFormField(
           key: const Key('expenseForm_priceInput_textField'),
-          padding: EdgeInsets.zero,
-          decoration: BoxDecoration(
-            color: CupertinoTheme.of(context).barBackgroundColor,
-            borderRadius: BorderRadius.circular(8),
+          decoration: InputDecoration(
+            hintText: context.l10n.priceFormFieldLabel,
           ),
+          focusNode: state.priceFocusNode,
           initialValue: initialValue,
           keyboardType: const TextInputType.numberWithOptions(
             decimal: true,
@@ -154,7 +149,6 @@ class _PriceInput extends StatelessWidget {
                   double.tryParse(price.replaceAll(',', '.')) ?? 0.0,
                 ),
               ),
-          placeholder: context.l10n.priceFormFieldLabel,
           onEditingComplete: () {
             state.priceFocusNode.unfocus();
             context.read<ExpenseAddEditBloc>().add(const ExpenseSubmitted());

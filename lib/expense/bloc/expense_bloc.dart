@@ -28,7 +28,10 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
       _expenseRepository.getExpenses(),
       onData: (expenses) {
         return state.copyWith(
-          expenses: expenses..sort((a, b) => a.name.compareTo(b.name)),
+          expenses: expenses
+            ..sort(
+              (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
+            ),
         );
       },
       onError: (_, __) => state.copyWith(status: FormzSubmissionStatus.failure),

@@ -6,8 +6,8 @@ import 'package:expenses_repository/expenses_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CounterPage extends StatelessWidget {
-  const CounterPage({super.key});
+class ExpensePage extends StatelessWidget {
+  const ExpensePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +16,8 @@ class CounterPage extends StatelessWidget {
         expenseRepository: context.read<ExpensesRepository>(),
       )..add(ExpenseSubscriptionRequested()),
       child: const PlatformAwareWidget(
-        androidWidget: AndroidCounterView(),
-        iosWidget: IosCounterView(),
+        androidWidget: AndroidExpenseView(),
+        iosWidget: IosExpenseView(),
       ),
     );
   }

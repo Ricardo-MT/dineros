@@ -19,10 +19,10 @@ final class ExpenseNameChanged extends ExpenseAddEditEvent {
 final class ExpensePriceChanged extends ExpenseAddEditEvent {
   const ExpensePriceChanged(this.price);
 
-  final double price;
+  final double? price;
 
   @override
-  List<Object> get props => [price];
+  List<Object> get props => [price ?? 'nullPrice'];
 }
 
 final class ExpenseInitialFocusRequested extends ExpenseAddEditEvent {
