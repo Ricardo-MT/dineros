@@ -1,5 +1,5 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
-import 'package:dineros/counter/counter.dart';
+import 'package:dineros/expense/view/expense_page.dart';
 import 'package:dineros/l10n/l10n.dart';
 import 'package:dineros/widgets/PlatformAwareWidget/platform_aware_widget.dart';
 import 'package:expenses_repository/expenses_repository.dart';
