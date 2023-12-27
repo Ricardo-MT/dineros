@@ -1,6 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dineros/counter/counter.dart';
-import 'package:dineros/counter/view/android/android_counter_page.dart';
+import 'package:dineros/expense/view/android_expense_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
