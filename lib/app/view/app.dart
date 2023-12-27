@@ -45,7 +45,7 @@ class AppView extends StatelessWidget {
             title: 'Dineros',
             theme: light,
             darkTheme: dark,
-            home: const CounterPage(),
+            home: const ExpensePage(),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
           );
@@ -66,7 +66,7 @@ class AppView extends StatelessWidget {
         builder: (theme) {
           return CupertinoApp(
             title: 'Dineros',
-            home: const CounterPage(),
+            home: const ExpensePage(),
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             theme: theme,

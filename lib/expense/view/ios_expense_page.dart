@@ -1,16 +1,16 @@
 import 'package:dineros/expense/bloc/expense_bloc.dart';
 import 'package:dineros/expense/view/ios_widgets.dart';
+import 'package:dineros/expense_add_edit/view/add_edit_expense.dart';
 import 'package:dineros/expense_add_edit/view/ios_add_edit_expense.dart';
 import 'package:dineros/l10n/l10n.dart';
-import 'package:dineros/widgets/PlatformAwareWidget/platform_aware_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-class IosCounterView extends StatelessWidget {
-  const IosCounterView({super.key});
+class IosExpenseView extends StatelessWidget {
+  const IosExpenseView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -200,10 +200,7 @@ class _Footer extends StatelessWidget {
             CupertinoButton(
               onPressed: () => showAdaptiveDialog<void>(
                 context: context,
-                builder: (_) => PlatformAwareWidget(
-                  androidWidget: Container(),
-                  iosWidget: const IosAddEditExpenseView(),
-                ),
+                builder: (_) => const AddEditExpense(),
               ),
               child: const Icon(CupertinoIcons.add),
             ),

@@ -11,14 +11,14 @@ import '../../helpers/helpers.dart';
 class MockCounterCubit extends MockCubit<int> implements CounterCubit {}
 
 void main() {
-  group('CounterPage', () {
-    testWidgets('renders AndroidCounterView', (tester) async {
-      await tester.pumpApp(const CounterPage());
-      expect(find.byType(AndroidCounterView), findsOneWidget);
+  group('ExpensePage', () {
+    testWidgets('renders AndroidExpenseView', (tester) async {
+      await tester.pumpApp(const ExpensePage());
+      expect(find.byType(AndroidExpenseView), findsOneWidget);
     });
   });
 
-  group('AndroidCounterView', () {
+  group('AndroidExpenseView', () {
     late CounterCubit counterCubit;
 
     setUp(() {
@@ -31,7 +31,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const AndroidCounterView(),
+          child: const AndroidExpenseView(),
         ),
       );
       expect(find.text('$state'), findsOneWidget);
@@ -44,7 +44,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const AndroidCounterView(),
+          child: const AndroidExpenseView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.add));
@@ -58,7 +58,7 @@ void main() {
       await tester.pumpApp(
         BlocProvider.value(
           value: counterCubit,
-          child: const AndroidCounterView(),
+          child: const AndroidExpenseView(),
         ),
       );
       await tester.tap(find.byIcon(Icons.remove));
