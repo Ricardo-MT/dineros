@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:dineros/counter/counter.dart';
 import 'package:dineros/l10n/l10n.dart';
 import 'package:dineros/widgets/PlatformAwareWidget/platform_aware_widget.dart';
@@ -35,19 +36,42 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PlatformAwareWidget(
-      androidWidget: MaterialApp(
-        title: 'Dineros',
-        theme: ThemeData.light(),
-        darkTheme: ThemeData.dark(),
-        home: const CounterPage(),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+      androidWidget: AdaptiveTheme(
+        light: ThemeData.light(),
+        dark: ThemeData.dark(),
+        initial: AdaptiveThemeMode.system,
+        builder: (light, dark) {
+          return MaterialApp(
+            title: 'Dineros',
+            theme: light,
+            darkTheme: dark,
+            home: const CounterPage(),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+          );
+        },
       ),
-      iosWidget: const CupertinoApp(
-        title: 'Dineros',
-        home: CounterPage(),
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
+      iosWidget: CupertinoAdaptiveTheme(
+        light: const CupertinoThemeData(
+          brightness: Brightness.light,
+          barBackgroundColor: CupertinoColors.systemBackground,
+          scaffoldBackgroundColor: CupertinoColors.secondarySystemBackground,
+        ),
+        dark: const CupertinoThemeData(
+          brightness: Brightness.dark,
+          barBackgroundColor: CupertinoColors.secondarySystemBackground,
+          scaffoldBackgroundColor: CupertinoColors.systemBackground,
+        ),
+        initial: AdaptiveThemeMode.system,
+        builder: (theme) {
+          return CupertinoApp(
+            title: 'Dineros',
+            home: const CounterPage(),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            theme: theme,
+          );
+        },
       ),
     );
   }

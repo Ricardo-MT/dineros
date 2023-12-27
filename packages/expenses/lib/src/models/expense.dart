@@ -18,15 +18,16 @@ import 'package:uuid/uuid.dart';
 class Expense extends Equatable {
   /// {@macro expense}
   Expense({
-    required this.date,
-    required this.name,
-    required this.price,
+    this.name = '',
+    this.price = 0.0,
+    DateTime? date,
     String? id,
   })  : assert(
           id == null || id.isNotEmpty,
           'id can not be null and should be empty',
         ),
-        id = id ?? const Uuid().v4();
+        id = id ?? const Uuid().v4(),
+        date = date ?? DateTime.now();
 
   /// The unique identifier of the `expense`.
   ///
@@ -34,7 +35,7 @@ class Expense extends Equatable {
   final String id;
 
   /// The date this `expense` was created.
-  final DateTime date;
+  late final DateTime date;
 
   /// The name of this `expense`.
   final String name;

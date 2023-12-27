@@ -1,7 +1,8 @@
-import 'package:dineros/counter/counter.dart';
-import 'package:dineros/counter/view/android/android_counter_page.dart';
-import 'package:dineros/counter/view/ios/ios_counter_page.dart';
+import 'package:dineros/expense/bloc/expense_bloc.dart';
+import 'package:dineros/expense/view/android_expense_page.dart';
+import 'package:dineros/expense/view/ios_expense_page.dart';
 import 'package:dineros/widgets/PlatformAwareWidget/platform_aware_widget.dart';
+import 'package:expenses_repository/expenses_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,7 +12,9 @@ class CounterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CounterCubit(),
+      create: (_) => ExpenseBloc(
+        expenseRepository: context.read<ExpensesRepository>(),
+      )..add(ExpenseSubscriptionRequested()),
       child: const PlatformAwareWidget(
         androidWidget: AndroidCounterView(),
         iosWidget: IosCounterView(),
