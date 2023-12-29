@@ -1,7 +1,15 @@
 {
     "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
+    "noExpenses": "Sin gastos",
+    "total": "Total",
+    "edit": "Editar",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "save": "Guardar",
+    "deletingExpenseTitle": "Eliminando",
+    "deletingExpenseDescription": "Se va a eliminar este gasto ¿Continuar?",
+    "addExpenseTitle": "Añadir gasto",
+    "editExpenseTitle": "Editar gasto",
+    "nameFormFieldLabel": "Nombre",
+    "priceFormFieldLabel": "Precio"
 }
