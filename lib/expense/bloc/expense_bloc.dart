@@ -15,6 +15,7 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   })  : _expenseRepository = expenseRepository,
         super(const ExpenseState()) {
     on<ExpenseSubscriptionRequested>(_onExpensesRequested);
+    on<ExpenseSortChanged>(_onExpenseSort);
     on<ExpenseDelete>(_onExpenseDelete);
   }
 
@@ -26,14 +27,8 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
   ) async {
     await emit.forEach(
       _expenseRepository.getExpenses(),
-      onData: (expenses) {
-        return state.copyWith(
-          expenses: expenses
-            ..sort(
-              (a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),
-            ),
-        );
-      },
+      onData: (expenses) =>
+          state.copyWith(expenses: expenses..sort(state.sort.compare)),
       onError: (_, __) => state.copyWith(status: FormzSubmissionStatus.failure),
     );
   }
@@ -43,5 +38,17 @@ class ExpenseBloc extends Bloc<ExpenseEvent, ExpenseState> {
     Emitter<ExpenseState> emit,
   ) {
     _expenseRepository.deleteExpense(event.expense);
+  }
+
+  FutureOr<void> _onExpenseSort(
+    ExpenseSortChanged event,
+    Emitter<ExpenseState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        sort: event.sort,
+        expenses: state.expenses.toList()..sort(event.sort.compare),
+      ),
+    );
   }
 }

@@ -15,7 +15,14 @@ class AndroidExpenseView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return Scaffold(
-      appBar: AppBar(title: const _Title()),
+      appBar: AppBar(
+        title: const _Title(),
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(kToolbarHeight * 0.5),
+          child: _SubTitle(),
+        ),
+        actions: const [AndroidExpenseFilterButton()],
+      ),
       body: BlocBuilder<ExpenseBloc, ExpenseState>(
         builder: (context, state) {
           if (state.expenses.isEmpty) {
@@ -132,6 +139,15 @@ class _Title extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Text(context.l10n.expensesPageTitle);
+  }
+}
+
+class _SubTitle extends StatelessWidget {
+  const _SubTitle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return BlocBuilder<ExpenseBloc, ExpenseState>(
       builder: (context, state) {
         final totalAmount = state.expenses.fold<double>(
@@ -139,25 +155,29 @@ class _Title extends StatelessWidget {
           (previousValue, element) => previousValue + element.price,
         );
         final totalAmountIsInteger = totalAmount == totalAmount.toInt();
-        return Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              '${context.l10n.total}: ',
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            Text(
-              NumberFormat.simpleCurrency(
-                locale: Localizations.localeOf(context).languageCode,
-                decimalDigits: totalAmountIsInteger ? 0 : null,
-              ).format(
-                totalAmountIsInteger ? totalAmount.toInt() : totalAmount,
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+            bottom: 8,
+          ),
+          child: Row(
+            children: [
+              Text(
+                '${context.l10n.total}: ',
+                style: Theme.of(context).textTheme.headlineSmall,
               ),
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ],
+              Text(
+                NumberFormat.simpleCurrency(
+                  locale: Localizations.localeOf(context).languageCode,
+                  decimalDigits: totalAmountIsInteger ? 0 : null,
+                ).format(
+                  totalAmountIsInteger ? totalAmount.toInt() : totalAmount,
+                ),
+                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+            ],
+          ),
         );
       },
     );
