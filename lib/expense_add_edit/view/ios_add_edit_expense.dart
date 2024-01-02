@@ -104,6 +104,7 @@ class _NameInput extends StatelessWidget {
       builder: (context, state) {
         return CupertinoTextFormFieldRow(
           focusNode: state.nameFocusNode,
+          textCapitalization: TextCapitalization.sentences,
           padding: EdgeInsets.zero,
           decoration: BoxDecoration(
             color: CupertinoTheme.of(context).barBackgroundColor,
