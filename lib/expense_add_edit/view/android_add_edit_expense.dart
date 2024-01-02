@@ -103,11 +103,12 @@ class _NameInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.name != current.name,
       builder: (context, state) {
         return TextFormField(
+          focusNode: state.nameFocusNode,
+          textCapitalization: TextCapitalization.sentences,
           key: const Key('expenseForm_nameInput_textField'),
           decoration: InputDecoration(
             hintText: context.l10n.nameFormFieldLabel,
           ),
-          focusNode: state.nameFocusNode,
           initialValue: state.name,
           onChanged: (name) =>
               context.read<ExpenseAddEditBloc>().add(ExpenseNameChanged(name)),

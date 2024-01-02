@@ -30,25 +30,25 @@ class ExpenseListItem extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
-            horizontal: 20,
-            vertical: 12,
+            horizontal: 16,
+            vertical: 10,
           ),
-          child: Row(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Expanded(
-                child: Text(
-                  expense.name,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: CupertinoTheme.of(context)
-                      .textTheme
-                      .navLargeTitleTextStyle,
-                ),
+              Text(
+                expense.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: CupertinoTheme.of(context)
+                    .textTheme
+                    .dateTimePickerTextStyle,
               ),
-              const SizedBox(width: 10),
-              Column(
+              const SizedBox(width: 8),
+              Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     DateFormat.yMMMd(
