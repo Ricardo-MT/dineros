@@ -1,15 +1,22 @@
 {
     "@@locale": "es",
-    "noExpenses": "Sin gastos",
+    "expensesPageTitle": "Suscripciones",
+    "noExpenses": "Sin suscripciones",
     "total": "Total",
     "edit": "Editar",
     "cancel": "Cancelar",
     "delete": "Eliminar",
     "save": "Guardar",
     "deletingExpenseTitle": "Eliminando",
-    "deletingExpenseDescription": "Se va a eliminar este gasto ¿Continuar?",
-    "addExpenseTitle": "Añadir gasto",
-    "editExpenseTitle": "Editar gasto",
+    "deletingExpenseDescription": "Se va a eliminar esta suscripción. ¿Continuar?",
+    "addExpenseTitle": "Añadir suscripción",
+    "editExpenseTitle": "Editar suscripción",
     "nameFormFieldLabel": "Nombre",
-    "priceFormFieldLabel": "Precio"
+    "priceFormFieldLabel": "Precio",
+    "dateNewest": "Fecha (más reciente)",
+    "dateOldest": "Fecha (más antigua)",
+    "amountHighest": "Precio (mayor primero)",
+    "amountLowest": "Precio (menor primero)",
+    "nameHighest": "Nombre (Z-A)",
+    "nameLowest": "Nombre (A-Z)"
 }
