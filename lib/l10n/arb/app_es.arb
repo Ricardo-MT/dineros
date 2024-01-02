@@ -1,5 +1,6 @@
 {
     "@@locale": "es",
+    "expensesPageTitle": "Suscripciones",
     "noExpenses": "Sin gastos",
     "total": "Total",
     "edit": "Editar",
@@ -11,5 +12,11 @@
     "addExpenseTitle": "Añadir gasto",
     "editExpenseTitle": "Editar gasto",
     "nameFormFieldLabel": "Nombre",
-    "priceFormFieldLabel": "Precio"
+    "priceFormFieldLabel": "Precio",
+    "dateNewest": "Fecha (más reciente)",
+    "dateOldest": "Fecha (más antigua)",
+    "amountHighest": "Precio (mayor primero)",
+    "amountLowest": "Precio (menor primero)",
+    "nameHighest": "Nombre (Z-A)",
+    "nameLowest": "Nombre (A-Z)"
 }

@@ -24,6 +24,7 @@ dependencies:
     sdk: flutter
   formz: ^0.6.1
   intl: ^0.18.0
+  pull_down_button: ^0.9.3
 
 dev_dependencies:
   bloc_test: ^9.1.4

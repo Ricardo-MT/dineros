@@ -1,6 +1,10 @@
+import 'package:dineros/expense/bloc/expense_bloc.dart';
+import 'package:dineros/l10n/l10n.dart';
 import 'package:expenses/expenses.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
+import 'package:pull_down_button/pull_down_button.dart';
 
 class ExpenseListItem extends StatelessWidget {
   const ExpenseListItem({
@@ -77,4 +81,76 @@ class ExpenseListItem extends StatelessWidget {
       ),
     );
   }
+}
+
+class IosFilterDropdownButton extends StatelessWidget {
+  const IosFilterDropdownButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExpenseBloc, ExpenseState>(
+      buildWhen: (previous, current) => previous.sort != current.sort,
+      builder: (context, state) {
+        return PullDownButton(
+          buttonBuilder: (context, showMenu) => CupertinoButton(
+            onPressed: showMenu,
+            padding: EdgeInsets.zero,
+            child: const Icon(CupertinoIcons.arrow_up_arrow_down_circle),
+          ),
+          itemBuilder: (BuildContext context) => buildMenuItems(context)
+              .map(
+                (item) => PullDownMenuItem(
+                  onTap: () => context.read<ExpenseBloc>().add(
+                        ExpenseSortChanged(item.value),
+                      ),
+                  title: item.title,
+                  icon: state.sort == item.value
+                      ? (CupertinoIcons.checkmark_alt)
+                      : null,
+                ),
+              )
+              .toList(),
+        );
+      },
+    );
+  }
+}
+
+List<MenuItem> buildMenuItems(BuildContext context) {
+  final l10n = context.l10n;
+  return [
+    MenuItem(
+      title: l10n.nameLowest,
+      value: ExpenseViewSort.nameLowest,
+    ),
+    MenuItem(
+      title: l10n.nameHighest,
+      value: ExpenseViewSort.nameHighest,
+    ),
+    MenuItem(
+      title: l10n.amountLowest,
+      value: ExpenseViewSort.amountLowest,
+    ),
+    MenuItem(
+      title: l10n.amountHighest,
+      value: ExpenseViewSort.amountHighest,
+    ),
+    MenuItem(
+      title: l10n.dateOldest,
+      value: ExpenseViewSort.dateOldest,
+    ),
+    MenuItem(
+      title: l10n.dateNewest,
+      value: ExpenseViewSort.dateNewest,
+    ),
+  ];
+}
+
+class MenuItem {
+  const MenuItem({
+    required this.title,
+    required this.value,
+  });
+  final String title;
+  final ExpenseViewSort value;
 }

@@ -16,9 +16,11 @@ class IosExpenseView extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = context.l10n;
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        border: Border.fromBorderSide(BorderSide.none),
+      navigationBar: CupertinoNavigationBar(
+        border: const Border.fromBorderSide(BorderSide.none),
         backgroundColor: Colors.transparent,
+        middle: Text(l10n.expensesPageTitle),
+        trailing: const IosFilterDropdownButton(),
       ),
       child: Padding(
         padding: const EdgeInsets.only(top: 10),

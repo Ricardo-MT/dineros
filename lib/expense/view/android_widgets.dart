@@ -1,6 +1,9 @@
+import 'package:dineros/expense/bloc/expense_bloc.dart';
+import 'package:dineros/expense/view/ios_widgets.dart';
 import 'package:dineros/l10n/l10n.dart';
 import 'package:expenses/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 class AndroidNoExpenses extends StatelessWidget {
@@ -85,6 +88,34 @@ class AndroidExpenseListItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class AndroidExpenseFilterButton extends StatelessWidget {
+  const AndroidExpenseFilterButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ExpenseBloc, ExpenseState>(
+      buildWhen: (previous, current) => previous.sort != current.sort,
+      builder: (context, state) {
+        return PopupMenuButton(
+          initialValue: state.sort,
+          onSelected: (ExpenseViewSort sort) {
+            context.read<ExpenseBloc>().add(ExpenseSortChanged(sort));
+          },
+          icon: const Icon(Icons.filter_list),
+          itemBuilder: (BuildContext context) => buildMenuItems(context)
+              .map(
+                (e) => PopupMenuItem(
+                  value: e.value,
+                  child: Text(e.title),
+                ),
+              )
+              .toList(),
+        );
+      },
     );
   }
 }

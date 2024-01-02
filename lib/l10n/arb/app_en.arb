@@ -1,5 +1,6 @@
 {
     "@@locale": "en",
+    "expensesPageTitle": "Subscriptions",
     "noExpenses": "No expenses",
     "total": "Total",
     "edit": "Edit",
@@ -11,5 +12,11 @@
     "addExpenseTitle": "Add Expense",
     "editExpenseTitle": "Edit Expense",
     "nameFormFieldLabel": "Name",
-    "priceFormFieldLabel": "Price"
+    "priceFormFieldLabel": "Price",
+    "dateNewest": "Date (newest first)",
+    "dateOldest": "Date (oldest first)",
+    "amountHighest": "Price (highest first)",
+    "amountLowest": "Price (lowest first)",
+    "nameHighest": "Name (Z-A)",
+    "nameLowest": "Name (A-Z)"
 }
