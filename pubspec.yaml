@@ -19,7 +19,7 @@ dependencies:
     path: packages/expenses_repository
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.3
+  flutter_bloc: ^8.1.4
   flutter_launcher_icons: ^0.13.1
   flutter_localizations:
     sdk: flutter
